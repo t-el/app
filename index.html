@@ -125,7 +125,7 @@ SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdX
 
             </code></pre></td>
 
-            <td><pre> <code class="language-json">config.json
+            <td><pre> <code class="language-json">
 ├── app.py
 ├── templates
             </code> </pre></td>
@@ -154,7 +154,7 @@ config.add_request_method(get_session, 'user', reify=True)
 
             </code></pre></td>
 
-            <td><pre> <code class="language-python">config.json
+            <td><pre> <code class="language-python">
 user = get_session_user(request)
 context = {
     "user": user,
@@ -180,7 +180,7 @@ base.auth._start_auto_refresh_token(value=3600)
 
             </code></pre></td>
 
-            <td><pre> <code class="language-python">config.json
+            <td><pre> <code class="language-python">
 # app.py
 # Conncect to Supabase
 supabase: sb_client = sb_create_client(project_url, secret)
@@ -207,7 +207,7 @@ def includeme(config):
 
             </code></pre></td>
 
-            <td><pre> <code class="language-python">config.json
+            <td><pre> <code class="language-python">
 # app.py
 if __name__ == '__main__':
     with Configurator() as config:
@@ -240,7 +240,7 @@ if __name__ == '__main__':
 # development.ini , production.ini
             </code></pre></td>
 
-            <td><pre> <code class="language-python">config.json
+            <td><pre> <code class="language-python">
 # config.py
 
             </code> </pre></td>
