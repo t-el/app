@@ -302,6 +302,40 @@ if __name__ == '__main__':
         </tr> 
     </table>
 
+    <h1>What i changed ? </h1>
+    <p>After googling about cookies and sessions in pyramid and how pyramid handles them</p>
+    <p>I conclude that pyramid in this case does not need to manage any sessions or cookies to manage login </p>
+    <h3>Why?</h3>
+    <p>Supabase is doing all of the work for us , so i do some changes in this case</p>
+     <ul>
+        <li>No sessions in pyramid , No cookies</li>
+        <li>Sending Post request to set sessions in supabase </li>
+        <pre><code class="language-js">
+             # html
+              form id="form" hidden action="{{request.route_url('auth')}}" method="POST">
+                input name="jwt_url"  id="jwt_url" 
+                input id="submit" type="submit" value="submit"
+              /form
+
+            # javascript
+            let jwt = window.location.href.replace("#access_token","?access_token");
+            if (jwt.includes('?access_token') && window.location.pathname == "/login"){
+            document.getElementById('jwt_url').value = jwt
+            submit = document.getElementById('submit').click()
+            
+            }
+            # view
+            @view_config(route_name='auth')
+            def auth_(request):
+                url = request.route_url('home')
+                if request.method == 'POST':
+                    jwt_url = request.POST.get('jwt_url')
+                    base.auth.current_session = base.auth.get_session_from_url(url=jwt_url)
+                return HTTPFound(location=url )
+            
+                        </code></pre>
+     </ul>
+
     <script  src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
 <script  >hljs.highlightAll();</script>
 </body>
